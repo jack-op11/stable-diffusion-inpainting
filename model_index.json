@@ -11,7 +11,7 @@
   ],
   "scheduler": [
     "diffusers",
-    "DDIMScheduler"
+    "PNDMScheduler"
   ],
   "text_encoder": [
     "diffusers",
