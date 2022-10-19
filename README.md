@@ -26,9 +26,8 @@ Stable Diffusion Inpainting is a latent text-to-image diffusion model capable of
 
 The **Stable-Diffusion-Inpainting** was initialized with the weights of the [Stable-Diffusion-v-1-2](https://steps/huggingface.co/CompVis/stable-diffusion-v-1-2-original). First 595k steps regular training, then 440k steps of inpainting training at resolution 512x512 on “laion-aesthetics v2 5+” and 10% dropping of the text-conditioning to improve classifier-free [classifier-free guidance sampling](https://arxiv.org/abs/2207.12598). For inpainting, the UNet has 5 additional input channels (4 for the encoded masked-image and 1 for the mask itself) whose weights were zero-initialized after restoring the non-inpainting checkpoint. During training, we generate synthetic masks and in 25% mask everything.
 
-[![Open In Spaces](https://camo.githubusercontent.com/00380c35e60d6b04be65d3d94a58332be5cc93779f630bcdfc18ab9a3a7d3388/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f25463025394625413425393725323048756767696e67253230466163652d5370616365732d626c7565)](https://huggingface.co/spaces/runwayml/stable-diffusion-inpainting)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/in_painting_with_stable_diffusion_using_diffusers.ipynb)
-
+[![Open In Spaces](https://camo.githubusercontent.com/00380c35e60d6b04be65d3d94a58332be5cc93779f630bcdfc18ab9a3a7d3388/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f25463025394625413425393725323048756767696e67253230466163652d5370616365732d626c7565)](https://huggingface.co/spaces/runwayml/stable-diffusion-inpainting) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/huggingface/notebooks/blob/main/diffusers/in_painting_with_stable_diffusion_using_diffusers.ipynb)
+ :-------------------------:|:-------------------------:|
 ## Examples:
 
 You can use this both with the [🧨Diffusers library](https://github.com/huggingface/diffusers) and the [RunwayML GitHub repository](https://github.com/runwayml/stable-diffusion).
@@ -44,7 +43,8 @@ pipe = StableDiffusionInpaintPipeline.from_pretrained(
     torch_dtype=torch.float16,
 )
 prompt = "Face of a yellow cat, high resolution, sitting on a park bench"
-#image and mask_image should be PIL images. The mask structure is white for inpainting and black for keeping as is
+#image and mask_image should be PIL images.
+#The mask structure is white for inpainting and black for keeping as is
 image = pipe(prompt=prompt, image=image, mask_image=mask_image).images[0]
 image.save("./yellow_cat_on_park_bench.png")
 ```
